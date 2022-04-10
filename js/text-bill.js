@@ -32,8 +32,8 @@ addToBillBtn.addEventListener('click', () => {
     totalCallOne.innerHTML = callTotal.toFixed(2)
 
     // * add the appropriate value to the running total
-    smsTotal > 13.75 ? totalBill = totalBill + smsTotal : totalBill = totalBill// * add nothing for invalid values that is not 'sms'.
-    callTotal > 27.50 ? totalBill = totalBill + callTotal : totalBill = totalBill// * add nothing for invalid values that is not 'call'.
+    smsTotal > 13.75 ? totalBill += .75 : totalBill = totalBill// * add nothing for invalid values that is not 'sms'.
+    callTotal > 27.50 ? totalBill += 2.75 : totalBill = totalBill// * add nothing for invalid values that is not 'call'.
 
     // * display the latest total on the screen
     totalOne.innerHTML = totalBill.toFixed(2)
