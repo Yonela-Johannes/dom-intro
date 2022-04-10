@@ -28,27 +28,9 @@ calculateBtn.addEventListener('click', () => {//link the function to a click eve
         totalAmount = (totalCall + totalSms)
         if (totalAmount > 20 && totalAmount < 30) {
             billTotal.classList.add('warning')
-            calculateBtn.classList.add('warning')
-            calculateBtn.classList.remove('button-primary')
-            calculateBtn.style.borderColor = 'orange'
-            calculateBtn.style.color = 'orange'
-            total.style.color = 'orange'
-            billString.style.color = 'orange'
-            billString.style.borderColor = 'orange'
-            billTotal.classList.remove('danger')
-            calculateBtn.classList.remove('danger')
         } else if (totalAmount > 30) {
             billTotal.classList.remove('warning')
-            calculateBtn.classList.remove('warning')
             billTotal.classList.add('danger')
-            calculateBtn.classList.add('danger')
-            calculateBtn.classList.remove('button-primary')
-            calculateBtn.classList.remove('warning')
-            calculateBtn.style.borderColor = 'red'
-            calculateBtn.style.color = 'red'
-            total.style.color = 'red'
-            billString.style.color = 'red'
-            billString.style.borderColor = 'red'
         }
     }
     //* once done looping over all the entries - display the total onto the screen in the billTotal element
