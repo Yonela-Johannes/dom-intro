@@ -86,7 +86,7 @@ updateSettings.addEventListener('click', () => {
                 totalSettings.classList.add('danger')// * check the value thresholds and display the total value in the right color.
             }
         } else {
-            return alert('Levels', "error! warning level should not be greater than critical level.")
+            return alert("Warning level should not be greater than Critical level. Critical level should not be empty!")
         }
 
     }
