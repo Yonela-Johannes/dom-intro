@@ -28,6 +28,7 @@ calculateBtn.addEventListener('click', () => {//link the function to a click eve
         totalAmount = (totalCall + totalSms)
         if (totalAmount > 20 && totalAmount < 30) {
             billTotal.classList.add('warning')
+            billTotal.classList.remove('danger')
         } else if (totalAmount > 30) {
             billTotal.classList.remove('warning')
             billTotal.classList.add('danger')
