@@ -6,7 +6,7 @@ const addToBillBtn = document.querySelector('.addToBillBtn')
 const totalColor = document.querySelector('.totalColor')
 const totalOne = document.querySelector('.totalOne')
 //create a variable that will keep track of the total bill
-let totalBill = 41.25, callTotal = 27.50, smsTotal = 13.75, smsCost = .75, callCost = 2.75
+let totalBill = 0, callTotal = 0, smsTotal = 0, smsCost = .75, callCost = 2.75
 
 // THIS IS A SECTION THAT I CREATED THAT DYNAMICALLY UPDATES THE STATIC VALUES ON HTML PAGE
 // get refference to total call one and sms total one
@@ -14,6 +14,9 @@ let totalCallOne = document.querySelector('.callTotalOne')
 let totalSmsOne = document.querySelector('.smsTotalOne')
 
 let ErrorInputMessage = 'error input!'
+totalCallOne.innerHTML = callTotal.toFixed(2)
+totalSmsOne.innerHTML = smsTotal.toFixed(2)
+totalOne.innerHTML = totalBill.toFixed(2)
 
 //add an event listener for when the add button is pressed
 //in the event listener check if the value in the bill type textbox is 'sms' or 'call'
@@ -21,21 +24,27 @@ addToBillBtn.addEventListener('click', () => {
 
     billTypeText.value == '' && billTypeText.setAttribute('placeholder', `${ErrorInputMessage} enter sms or call`)
 
-    if (billTypeText.value == 'sms' || billTypeText.value == 'call') {
+    if (billTypeText.value == 'sms') {
         billTypeText.value == 'sms' ? smsTotal += smsCost : smsTotal
+        totalBill = smsTotal
+    }
+    if (billTypeText.value == 'call') {
         billTypeText.value == "call" ? callTotal += callCost : callTotal
-    } else if (billTypeText.value !== 'sms' || billTypeText.value !== 'call') {
+    }
+
+    else if (billTypeText.value !== 'sms' || billTypeText.value !== 'call') {
         billTypeText.setAttribute('placeholder', `${ErrorInputMessage} enter sms or call`)
+        totalBill = callTotal
     };
+
+    totalBill = smsTotal + callCost
     // assigning totals to screen
     totalSmsOne.innerHTML = smsTotal.toFixed(2)
     totalCallOne.innerHTML = callTotal.toFixed(2)
 
     // * add the appropriate value to the running total
-    smsTotal > 13.75 ? totalBill += .75 : totalBill = totalBill// * add nothing for invalid values that is not 'sms'.
-    callTotal > 27.50 ? totalBill += 2.75 : totalBill = totalBill// * add nothing for invalid values that is not 'call'.
-
     // * display the latest total on the screen
+
     totalOne.innerHTML = totalBill.toFixed(2)
 
     // color toggles on the screen

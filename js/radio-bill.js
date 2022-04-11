@@ -8,9 +8,14 @@ let displayCallTotalTwo = document.querySelector('.callTotalTwo'), displaySmsTot
 const radioBillAddBtn = document.querySelector('.radioBillAddBtn')
 // * add the appropriate value to the running total
 // storing data
-let totalAmount = 37.50, totalCallTwo = 34.50, currentCall = 2.75, totalSmsTwo = 3.00, currentSms = 0.75
+let totalAmount = 0, totalCallTwo = 0, currentCall = 2.75, totalSmsTwo = 0, currentSms = 0.75
 
 let displayTotalTwo = document.querySelector('.totalTwo')
+
+displayCallTotalTwo.innerHTML = totalCallTwo.toFixed(2)
+displaySmsTotalTwo.innerHTML = totalSmsTwo.toFixed(2)
+// * display the total on the screen
+displayTotalTwo.innerHTML = totalAmount.toFixed(2)
 
 radioBillAddBtn.addEventListener('click', () => {
     //in the event listener get the value from the billItemTypeRadio radio buttons
@@ -19,14 +24,14 @@ radioBillAddBtn.addEventListener('click', () => {
         billItemTypeRadio[i].value == 'call' & billItemTypeRadio[i].checked ? totalCallTwo += currentCall : totalCallTwo
         billItemTypeRadio[i].value == 'sms' & billItemTypeRadio[i].checked ? totalSmsTwo += currentSms : totalSmsTwo
     }
+
     // * add nothing for invalid values that is not 'call' or 'sms'.
-    totalCallTwo > 34.50 ? totalAmount += 2.75 : totalAmount
-    totalSmsTwo > 3.00 ? totalAmount += 0.75 : totalAmount
+    totalCallTwo > 0 ? totalAmount += 2.75 : totalAmount
+    totalSmsTwo > 0 ? totalAmount += 0.75 : totalAmount
     displayCallTotalTwo.innerHTML = totalCallTwo.toFixed(2)
     displaySmsTotalTwo.innerHTML = totalSmsTwo.toFixed(2)
     // * display the latest total on the screen
     displayTotalTwo.innerHTML = totalAmount.toFixed(2)
-
 
     totalAmount > 30 & totalCallTwo < 50 && totalTwoColor.classList.add('warning')
     totalAmount > 50 && totalTwoColor.classList.add('danger')
