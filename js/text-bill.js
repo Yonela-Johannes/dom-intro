@@ -25,11 +25,11 @@ addToBillBtn.addEventListener('click', () => {
     billTypeText.value == '' && billTypeText.setAttribute('placeholder', `${ErrorInputMessage} enter sms or call`)
 
     if (billTypeText.value == 'sms') {
-        billTypeText.value == 'sms' ? smsTotal += smsCost : smsTotal
+        billTypeText.value == 'sms' ? smsTotal += smsCost : smsTotal = 0
         totalBill = smsTotal
     }
     if (billTypeText.value == 'call') {
-        billTypeText.value == "call" ? callTotal += callCost : callTotal
+        billTypeText.value == "call" ? callTotal += callCost : callTotal = 0
     }
 
     else if (billTypeText.value !== 'sms' || billTypeText.value !== 'call') {
@@ -37,7 +37,7 @@ addToBillBtn.addEventListener('click', () => {
         totalBill = callTotal
     };
 
-    totalBill = smsTotal + callCost
+    totalBill = smsTotal + callTotal
     // assigning totals to screen
     totalSmsOne.innerHTML = smsTotal.toFixed(2)
     totalCallOne.innerHTML = callTotal.toFixed(2)
