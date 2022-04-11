@@ -30,11 +30,11 @@ addToBillBtn.addEventListener('click', () => {
     }
     if (billTypeText.value == 'call') {
         billTypeText.value == "call" ? callTotal += callCost : callTotal = 0
+        totalBill = callTotal
     }
 
     else if (billTypeText.value !== 'sms' || billTypeText.value !== 'call') {
         billTypeText.setAttribute('placeholder', `${ErrorInputMessage} enter sms or call`)
-        totalBill = callTotal
     };
 
     totalBill = smsTotal + callTotal
