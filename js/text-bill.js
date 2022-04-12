@@ -23,13 +23,14 @@ totalOne.innerHTML = totalBill.toFixed(2)
 addToBillBtn.addEventListener('click', () => {
 
     billTypeText.value == '' && billTypeText.setAttribute('placeholder', `${ErrorInputMessage} enter sms or call`)
+    let sms = billTypeText.value, call = billTypeText.value
 
-    if (billTypeText.value == 'sms') {
-        billTypeText.value == 'sms' ? smsTotal += smsCost : smsTotal = 0
+    if (sms.toLowerCase() == 'sms') {
+        sms.toLowerCase() == 'sms' ? smsTotal += smsCost : smsTotal = 0
         totalBill = smsTotal
     }
-    if (billTypeText.value == 'call') {
-        billTypeText.value == "call" ? callTotal += callCost : callTotal = 0
+    if (call.toLowerCase() == 'call') {
+        call.toLowerCase() == "call" ? callTotal += callCost : callTotal = 0
         totalBill = callTotal
     }
 

@@ -32,37 +32,53 @@ addBtn.addEventListener('click', () => {
     call = callCostSetting.value
     sms = smsCostSetting.value
     //in the event listener get the value from the billItemTypeRadio radio buttons
-    if (billItemTypeWithSettings[1].checked) {
-        smsCostSetting.value == '' && smsCostSetting.setAttribute('placeholder', errorMessage)
-        if (typeof smsCostSetting.value !== 'number') {
 
-            smsTotalCost = parseFloat(sms) + parseFloat(smsTotalCost)
-            callTotalCost = callTotalCost
-            allTotalCost = callTotalCost + smsTotalCost
-        }
-    }
-    if (billItemTypeWithSettings[0].checked) {
-        callCostSetting.value == '' && callCostSetting.setAttribute('placeholder', errorMessage)
-        if (typeof callCostSetting.value !== 'number') {
 
-            smsTotalCost = smsTotalCost
-            callTotalCost = parseFloat(call) + parseFloat(callTotalCost)
-            allTotalCost = smsTotalCost + callTotalCost
+    if (allTotalCost >= criticalLevelAmount) {
+        callTotalCost = parseFloat(callTotalCost)
+        smsTotalCost = parseFloat(smsTotalCost)
+        allTotalCost = allTotalCost
+    } else {
+        if (billItemTypeWithSettings[1].checked) {
+            smsCostSetting.value == '' && smsCostSetting.setAttribute('placeholder', errorMessage)
+            if (typeof smsCostSetting.value !== 'number') {
+
+                smsTotalCost = parseFloat(sms) + parseFloat(smsTotalCost)
+                callTotalCost = callTotalCost
+                allTotalCost = callTotalCost + smsTotalCost
+            }
         }
+        if (billItemTypeWithSettings[0].checked) {
+            callCostSetting.value == '' && callCostSetting.setAttribute('placeholder', errorMessage)
+            if (typeof callCostSetting.value !== 'number') {
+
+                smsTotalCost = smsTotalCost
+                callTotalCost = parseFloat(call) + parseFloat(callTotalCost)
+                allTotalCost = smsTotalCost + callTotalCost
+            }
+        }
+        if (allTotalCost < warningLevelAmount) {
+            totalSettings.classList.remove('warning')
+            totalSettings.classList.remove('danger')
+
+        }
+        if (allTotalCost >= warningLevelAmount) {
+            totalSettings.classList.add('warning')
+            totalSettings.classList.remove('danger')
+
+        }
+
+        if (allTotalCost >= criticalLevelAmount) {
+            totalSettings.classList.remove('warning')
+            totalSettings.classList.add('danger')
+        }
+
     }
     allTotalCost = smsTotalCost + callTotalCost
     smsTotalSettings.innerHTML = parseFloat(smsTotalCost).toFixed(2)
     callTotalSettings.innerHTML = parseFloat(callTotalCost).toFixed(2)
     totalSettings.innerHTML = allTotalCost.toFixed(2)
 
-    if (allTotalCost >= warningLevelAmount & warningLevelAmount < criticalLevelAmount) {
-        totalSettings.classList.add('warning')
-        totalSettings.classList.remove('danger')
-    }
-    if (criticalLevelAmount <= allTotalCost) {
-        totalSettings.classList.remove('warning')
-        totalSettings.classList.add('danger')
-    }
 });
 
 
@@ -70,22 +86,22 @@ updateSettings.addEventListener('click', () => {
     const criticalLevelAmount = criticalLevel.value
     const warningLevelAmount = warningLevel.value
 
-    if (allTotalCost >= warningLevelAmount & warningLevelAmount < criticalLevelAmount) {
+    if (allTotalCost < warningLevelAmount) {
+        totalSettings.classList.remove('warning')
+        totalSettings.classList.remove('danger')
+
+    }
+    if (allTotalCost >= warningLevelAmount) {
         totalSettings.classList.add('warning')
         totalSettings.classList.remove('danger')
+
     }
 
-    if (criticalLevelAmount <= allTotalCost) {
+    if (allTotalCost >= criticalLevelAmount) {
         totalSettings.classList.remove('warning')
         totalSettings.classList.add('danger')
-    }
-    else {
-        totalSettings.classList.remove('warning')
-        totalSettings.classList.remove('danger')
-        warningLevel.setAttribute('placeholder', errorMessageTwo)
-        criticalLevel.setAttribute('placeholder', errorMessageTwo)
-    }
 
+    }
 })
 
 

@@ -20,8 +20,8 @@ calculateBtn.addEventListener('click', () => {//link the function to a click eve
         //* loop over all the entries in the the resulting list
         for (let i = 0; i < billArray.length; i++) {
             //* check if it is a call or an sms and add the right amount to the overall total
-            billArray[i].trim() == 'call' && callCount++
-            billArray[i].trim() == 'sms' && smsCount++
+            billArray[i].trim().toLowerCase() == 'call' && callCount++
+            billArray[i].trim().toLowerCase() == 'sms' && smsCount++
         }
         totalCall = (callCount * 2.75)
         totalSms = (smsCount * 0.75)
