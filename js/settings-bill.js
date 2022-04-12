@@ -33,6 +33,14 @@ addBtn.addEventListener('click', () => {
     sms = smsCostSetting.value
     //in the event listener get the value from the billItemTypeRadio radio buttons
 
+    if (call < 0) {
+        call = parseFloat(0)
+    }
+    sms = sms
+    if (sms < 0) {
+        sms = parseFloat(0)
+        call = call
+    }
 
     if (allTotalCost >= criticalLevelAmount) {
         callTotalCost = parseFloat(callTotalCost)
