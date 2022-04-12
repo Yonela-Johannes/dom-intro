@@ -26,8 +26,8 @@ radioBillAddBtn.addEventListener('click', () => {
     }
 
     // * add nothing for invalid values that is not 'call' or 'sms'.
-    totalCallTwo > 0 ? totalAmount += 2.75 : totalAmount
-    totalSmsTwo > 0 ? totalAmount += 0.75 : totalAmount
+    totalAmount = totalCallTwo + totalSmsTwo
+
     displayCallTotalTwo.innerHTML = totalCallTwo.toFixed(2)
     displaySmsTotalTwo.innerHTML = totalSmsTwo.toFixed(2)
     // * display the latest total on the screen
