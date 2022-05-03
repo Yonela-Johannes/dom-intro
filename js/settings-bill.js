@@ -18,25 +18,18 @@ addBtn.addEventListener('click', () => {
     bill.setCriticalLevel(critical)
     bill.setCallCost(call)
     bill.setSmsCost(sms)
+    billItemTypeWithSettings[0].checked && bill.makeCall()
+    billItemTypeWithSettings[1].checked && bill.sendSms()
+    callTotalSettings.innerHTML = bill.getCallTotalCost().toFixed(2)
+    smsTotalSettings.innerHTML = bill.getSmsTotalCost().toFixed(2)
+    totalSettings.innerHTML = bill.getAllTotalAmount().toFixed(2)
     totalSettings.classList.add(bill.hasReachedWarningLevel() && 'warning')
     totalSettings.classList.remove(bill.hasReachedWarningLevel() && 'danger')
     totalSettings.classList.add(bill.hasReachedCriticalLevel() && 'danger')
     totalSettings.classList.remove(bill.hasReachedCriticalLevel() && 'warning')
-    bill.hasReachedCriticalLevel()
-    billItemTypeWithSettings[0].checked && bill.makeCall()
-    billItemTypeWithSettings[1].checked && bill.sendSms()
-    bill.allTotalAmounts()
-    bill.getAllTotalAmount()
-    callTotalSettings.innerHTML = bill.getCallTotalCost().toFixed(2)
-    smsTotalSettings.innerHTML = bill.getSmsTotalCost().toFixed(2)
-    totalSettings.innerHTML = bill.getAllTotalAmount().toFixed(2)
-    console.log(bill.totalClassName())
-    console.log(bill.getTotalClassName())
 });
-
 
 updateSettings.addEventListener('click', () => {
     bill.setWarningLevel(warningLevel.value)
     bill.setCriticalLevel(criticalLevel.value)
-    bill.totalClassName()
 });
