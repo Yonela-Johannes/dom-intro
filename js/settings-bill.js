@@ -11,7 +11,18 @@ smsTotalSettings.innerHTML = smsTotalCost.toFixed(2)
 callTotalSettings.innerHTML = callTotalCost.toFixed(2)
 totalSettings.innerHTML = allTotalCost.toFixed(2)
 
-addBtn.addEventListener('click', () => {
+const update = () => {
+    if (bill.getAllTotalAmount() >= bill.setCriticalLevel(criticalLevel.value)) {
+        totalSettings.classList.remove('warning')
+        totalSettings.classList.add('danger')
+    }
+    else if (bill.getAllTotalAmount() >= bill.setWarningLevel(warningLevel.value)) {
+        totalSettings.classList.remove('danger')
+        totalSettings.classList.add('warning')
+    }
+}
+
+const add = () => {
     let call = callCostSetting.value, sms = smsCostSetting.value
     let critical = criticalLevel.value, warning = warningLevel.value
     bill.setWarningLevel(warning)
@@ -23,13 +34,10 @@ addBtn.addEventListener('click', () => {
     callTotalSettings.innerHTML = bill.getCallTotalCost().toFixed(2)
     smsTotalSettings.innerHTML = bill.getSmsTotalCost().toFixed(2)
     totalSettings.innerHTML = bill.getAllTotalAmount().toFixed(2)
-    totalSettings.classList.add(bill.hasReachedWarningLevel() && 'warning')
-    totalSettings.classList.remove(bill.hasReachedWarningLevel() && 'danger')
-    totalSettings.classList.add(bill.hasReachedCriticalLevel() && 'danger')
-    totalSettings.classList.remove(bill.hasReachedCriticalLevel() && 'warning')
-});
+    totalSettings.classList.add(bill.classes())
+    update()
+}
 
-updateSettings.addEventListener('click', () => {
-    bill.setWarningLevel(warningLevel.value)
-    bill.setCriticalLevel(criticalLevel.value)
-});
+addBtn.addEventListener('click', add);
+
+updateSettings.addEventListener('click', update);

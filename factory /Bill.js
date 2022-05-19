@@ -1,22 +1,14 @@
 
 export function BillSettings() {
     // initialising amounts
-    let theCallCost = 0
-    let theSmsCost = 0
-    let theWarningLevel = 0
-    let theCriticalLevel = 0
-    let theClassName = 'Okay'
-    // total amounts
-    let theSmsTotalCost = 0
-    let theCallTotalCost = 0
-    let totalAmount = 0
-    // Setting the call & sms cost
-    const setCallCost = callCost => callCost < 0 ? theCallCost = parseFloat(0) : theCallCost = parseFloat(callCost)
-    const setSmsCost = smsCost => theSmsCost = smsCost < 0 ? smsCost = parseFloat(0) : smsCost = parseFloat(smsCost)
-    // factorising the functions and pass it in ass a parameter
+    let amount = 0
+    let theCallCost = amount, theSmsCost = amount, theWarningLevel = amount, theCriticalLevel = amount
+    let theSmsTotalCost = amount, theCallTotalCost = amount, totalAmount = amount
+
+    const setCallCost = callCost => callCost < amount ? theCallCost = parseFloat(amount) : theCallCost = parseFloat(callCost)
+    const setSmsCost = smsCost => theSmsCost = smsCost < amount ? smsCost = parseFloat(amount) : smsCost = parseFloat(smsCost)
     const getCallCost = () => theCallCost
     const getSmsCost = () => theSmsCost
-    // Setting the levels
     const setWarningLevel = setWarning => theWarningLevel = setWarning
     const setCriticalLevel = setCritical => theCriticalLevel = setCritical
     // getting the levels
@@ -33,7 +25,11 @@ export function BillSettings() {
 
     const hasReachedWarningLevel = () => getAllTotalAmount() >= getWarningLevel()
     const hasReachedCriticalLevel = () => getAllTotalAmount() >= getCriticalLevel()
-    const getTotalClassName = () => theClassName
+
+    const classes = () => {
+        if (getAllTotalAmount() >= getCriticalLevel()) return "danger"
+        if (getAllTotalAmount() >= getWarningLevel()) return "warning"
+    }
 
     return {
         // retrieving the set functions
@@ -55,6 +51,6 @@ export function BillSettings() {
         getAllTotalAmount,
         hasReachedWarningLevel,
         hasReachedCriticalLevel,
-        getTotalClassName,
+        classes,
     }
 }
