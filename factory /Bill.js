@@ -41,26 +41,20 @@ export function BillSettings() {
         setSmsCost,
         setWarningLevel,
         setCriticalLevel,
-
         // retrieving the get functions
         getCallCost,
         getSmsCost,
         getWarningLevel,
         getCriticalLevel,
-
         // sending amounts
         makeCall,
         sendSms,
-        // retrieving the total amount functions
         getCallTotalCost,
         getSmsTotalCost,
         allTotalAmounts,
         getAllTotalAmount,
-
         hasReachedWarningLevel,
         hasReachedCriticalLevel,
-        // retrieving warning level limit
-        // totalClassName,
         getTotalClassName,
     }
 }
