@@ -6,7 +6,7 @@ const TextBillFactory = () => {
     const getCallTotal = () => callTotal
     const getSmsTotal = () => smsTotal
     const makeCall = () => getTotal() <= getCriticalLevel() ? callTotal += callCost() : callTotal
-    const sendSms = () => getTotal <= criticalLevel() ? smsTotal += smsCost() : smsTotal
+    const sendSms = () => getTotal() <= getCriticalLevel() ? smsTotal += smsCost() : smsTotal
     const totalBill = () => billTotal = callTotal + smsTotal
     const getTotal = () => billTotal
     const getWarningLevel = () => warningLevel
