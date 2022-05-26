@@ -26,12 +26,16 @@ calculateBtn.addEventListener('click', () => {//link the function to a click eve
         totalCall = (callCount * 2.75)
         totalSms = (smsCount * 0.75)
         totalAmount = (totalCall + totalSms)
-        if (totalAmount > 20 && totalAmount < 30) {
+        if (totalAmount >= 30) {
+            billTotal.classList.add('danger')
+            billTotal.classList.remove('warning')
+        } else if (totalAmount >= 20) {
             billTotal.classList.add('warning')
             billTotal.classList.remove('danger')
-        } else if (totalAmount > 30) {
+        }
+        else{
             billTotal.classList.remove('warning')
-            billTotal.classList.add('danger')
+            billTotal.classList.remove('danger')
         }
     }
     //* once done looping over all the entries - display the total onto the screen in the billTotal element

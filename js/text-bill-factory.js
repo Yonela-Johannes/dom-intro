@@ -5,8 +5,8 @@ const TextBillFactory = () => {
     const smsCost = () => .75
     const getCallTotal = () => callTotal
     const getSmsTotal = () => smsTotal
-    const makeCall = () => getTotal() <= getCriticalLevel() ? callTotal += callCost() : callTotal
-    const sendSms = () => getTotal() <= getCriticalLevel() ? smsTotal += smsCost() : smsTotal
+    const makeCall = () => callTotal += callCost()
+    const sendSms = () => smsTotal += smsCost()
     const totalBill = () => billTotal = callTotal + smsTotal
     const getTotal = () => billTotal
     const getWarningLevel = () => warningLevel
@@ -32,8 +32,8 @@ const RadioBillFactory = () => {
     let callCost = 2.75, smsCost = .75
     let callTotal = 0, smsTotal = 0, total = 0
     let warningLevel = 30, criticalLevel = 50
-    const makeCall = () => getTotal() <= getCriticalLevel() ? callTotal += callCost : callTotal
-    const sendSms = () => getTotal() <= getCriticalLevel() ? smsTotal += smsCost : smsTotal
+    const makeCall = () => callTotal += callCost
+    const sendSms = () => smsTotal += smsCost
     const setTotal = () => total = callTotal + smsTotal
     const getCallTotal = () => callTotal
     const getSmsTotal = () => smsTotal
